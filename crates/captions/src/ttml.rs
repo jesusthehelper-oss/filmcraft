@@ -567,7 +567,16 @@ fn times(n: roxmltree::Node, parent: Scope, tm: Timing, doc: &mut Document) -> T
 /// importers cap the same class of attacker-controlled recursion at 32 (`depth > 32`).
 const MAX_DEPTH: usize = 32;
 
-fn walk(n: roxmltree::Node, parent: Scope, depth: usize, tm: &Timing, styles: &HashMap<String, Fmt>, speakers: &HashMap<String, String>, fmt: Fmt, doc: &mut Document) {
+fn walk(
+    n: roxmltree::Node,
+    parent: Scope,
+    depth: usize,
+    tm: &Timing,
+    styles: &HashMap<String, Fmt>,
+    speakers: &HashMap<String, String>,
+    fmt: Fmt,
+    doc: &mut Document,
+) {
     for c in n.children().filter(|c| c.is_element()) {
         let f = style_of(c, styles, fmt);
         match c.tag_name().name() {
